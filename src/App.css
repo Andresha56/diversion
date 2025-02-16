@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+.cut-text {
+  position: relative;
+}
+
+.cut-text::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  bottom: 0;
+  left: 0;
+  background: white; /* Matches footer background */
+  clip-path: polygon(0% 60%, 100% 20%, 100% 100%, 0% 100%);
+}
