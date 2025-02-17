@@ -94,7 +94,7 @@ const Footer = () => {
         </div>
 
         {/* Address */}
-        <div className="text-center md:text-right">
+        <div className="text-center md:text-right bg-black">
           <p>Tollygunge</p>
           <p>Kolkata</p>
           <p>West Bengal</p>
