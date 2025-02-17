@@ -20,19 +20,19 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold text-lg">Company</h3>
           <ul className="mt-3 space-y-2 text-sm text-gray-600">
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">About us</a>
             </li>
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">Terms of use</a>
             </li>
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">Privacy Policy</a>
             </li>
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">Corporate Information</a>
             </li>
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">Lending Partners</a>
             </li>
           </ul>
@@ -42,16 +42,16 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold text-lg">Product</h3>
           <ul className="mt-3 space-y-2 text-sm text-gray-600">
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">Product Overview</a>
             </li>
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">inventoryEdge</a>
             </li>
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">expenseEdge</a>
             </li>
-            <li>
+            <li className="hover:text-[#5044FC]">
               <a href="#">billEdge</a>
             </li>
           </ul>
@@ -65,7 +65,10 @@ const Footer = () => {
           </p>
           <p className="mt-2 text-sm flex items-center">
             📧{" "}
-            <a href="mailto:support@finjymc.com" className="ml-1">
+            <a
+              href="mailto:support@finjymc.com"
+              className="ml-1 hover:text-[#5044FC]"
+            >
               support@finjymc.com
             </a>
           </p>
