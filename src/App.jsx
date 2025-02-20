@@ -1,20 +1,20 @@
 import React from "react";
-import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import MarketStats from "./components/MarketStats";
 import WhyUs from "./components/WhyUs";
-import FeatureSections from "./components/FeatureSections";
+import InventoryEdge from "./components/InventoryEdge";
+import ExpenseEdge from "./components/ExpenseEdge";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
 function App() {
   return (
     <div>
-      <Navbar />
       <HeroSection />
       <MarketStats />
       <WhyUs />
-      <FeatureSections />
+      <InventoryEdge />
+      <ExpenseEdge />
       <FAQ />
       <Footer />
     </div>
