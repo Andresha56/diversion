@@ -8,6 +8,7 @@ import { Footer } from "./components/User/Footer";
 import Protected from "./components/Protected";
 import { ToastContainer } from "react-toastify";
 import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -63,6 +64,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage/>} />
           <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
         </Routes>
         {authStatus && <Footer />}
