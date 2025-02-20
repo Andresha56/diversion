@@ -12,7 +12,7 @@ const Card = ({ title, description, bgColor, children }) => {
 
 const Dashboard = () => {
   return (
-    <div className="min-h-fit flex flex-col justify-center bg-gray-100 px-20">
+    <div className="min-h-fit flex flex-col justify-center  px-20">
       <h1 className="text-5xl font-bold ml-5 text-purple-700 mb-15 mt-20">
         Why us?
       </h1>
