@@ -44,7 +44,7 @@ const InventoryEdge = () => {
           transition={{ duration: 1, delay: 0.5 }}
         >
           <p>
-            Manage <br /> inventory seamlessly
+            Manage <br /> inventory <br /> seamlessly
           </p>
         </motion.div>
       </div>
