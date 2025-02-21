@@ -27,7 +27,7 @@ const HeroSection = () => {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <motion.h1
-          className="text-5xl font-bold mb-4 drop-shadow-2xl"
+          className="text-5xl font-custom mb-4 drop-shadow-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
@@ -35,7 +35,7 @@ const HeroSection = () => {
           Manage your enterprise with an edge ahead
         </motion.h1>
         <motion.p
-          className="text-xl mb-6 drop-shadow-lg"
+          className="text-xl font-custom mb-6 drop-shadow-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
@@ -61,8 +61,8 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 1, ease: "easeOut" }}
       >
         <motion.p
-          animate={{ y: [0, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+          animate={{ y: [0, -7, 0] }} // Slightly increase the bounce effect
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} // Reduce duration for smoother effect
         >
           crafted with <span className="text-red-400 text-opacity-60">❤️</span>{" "}
           for super enterprises like yours
