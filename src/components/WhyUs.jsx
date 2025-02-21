@@ -1,95 +1,60 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const Card = ({ title, description, bgColor, children }) => {
+const WhyUs = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Animation triggers only once when in view
+    threshold: 0.2, // Triggers when 20% of the component is in view
+  });
+
+  const features = [
+    {
+      title: "Manage Inventory",
+      image: "/manage-inventory.png",
+      delay: 0.2,
+    },
+    {
+      title: "Manage Expenses",
+      image: "/manage-expenses.png",
+      delay: 0.4,
+    },
+    {
+      title: "Manage Billing",
+      image: "/manage-billing.png",
+      delay: 0.6,
+    },
+  ];
+
   return (
-    <div className={`p-6 rounded-2xl shadow-lg text-white ${bgColor}`}>
-      <h3 className="text-xl font-bold">{title}</h3>
-      <p className="text-sm opacity-80">{description}</p>
-      <div className="mt-4">{children}</div>
-    </div>
-  );
-};
+    <section
+      ref={ref}
+      className="h-[80vh] flex flex-col items-center justify-center text-center mb-20 mt-20"
+    >
+      {/* Title */}
+      <h1 className="text-4xl font-bold text-purple-800 mb-10">Why Us?</h1>
 
-const Dashboard = () => {
-  return (
-    <div className="min-h-fit flex flex-col justify-center  px-20">
-      <h1 className="text-5xl font-bold ml-5 text-purple-700 mb-15 mt-20">
-        Why us?
-      </h1>
-      <div className="flex gap-6 px-10 py-10">
-        {/* Manage Inventory */}
-        <Card
-          title="Manage inventory"
-          description="Manage your inventory seamlessly and track or add products easily through the app/web"
-          bgColor="bg-purple-600"
-        >
-          <div className="bg-white p-4 rounded-xl text-gray-900">
-            <div className="flex justify-between">
-              <div className="text-center">
-                <p className="font-bold">Total Products</p>
-                <p className="text-xl">300</p>
-              </div>
-              <div className="text-center">
-                <p className="font-bold text-red-500">Low Stock</p>
-                <p className="text-xl text-red-500">12</p>
-              </div>
-            </div>
-            <input
-              className="w-full mt-2 p-2 border rounded-md"
-              type="text"
-              placeholder="Search inventory..."
+      {/* Cards Container */}
+      <div className="flex flex-col md:flex-row justify-center items-center gap-10">
+        {features.map((feature, index) => (
+          <motion.div
+            key={index}
+            className="bg-white p-5 rounded-lg shadow-lg w-[250px] md:w-[400px] cursor-pointer overflow-hidden"
+            initial={{ opacity: 0, y: 50 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.02 }} // No hover delay
+          >
+            <img
+              src={feature.image}
+              alt={feature.title}
+              className="w-full rounded-md"
             />
-          </div>
-        </Card>
-
-        {/* Manage Expenses */}
-        <Card
-          title="Manage expenses"
-          description="Manage expenses seamlessly with the help of useful features in the application/web"
-          bgColor="bg-pink-600"
-        >
-          <div className="bg-white p-4 rounded-xl text-gray-900">
-            <p className="font-bold">Total Expenses</p>
-            <p className="text-2xl text-purple-700">Rs 4,280.50</p>
-            <p className="text-sm opacity-70">Budget: Rs 6,000</p>
-            <div className="mt-2 flex justify-between text-sm">
-              <span className="bg-green-200 text-green-700 px-2 py-1 rounded-md">
-                Completed
-              </span>
-              <span className="bg-yellow-200 text-yellow-700 px-2 py-1 rounded-md">
-                Pending
-              </span>
-            </div>
-          </div>
-        </Card>
-
-        {/* Manage Billing */}
-        <Card
-          title="Manage billing"
-          description="Create seamless bills using leveraging features in the app/web"
-          bgColor="bg-green-600"
-        >
-          <div className="bg-white p-4 rounded-xl text-gray-900">
-            <input
-              className="w-full mb-2 p-2 border rounded-md"
-              type="text"
-              placeholder="Enter customer name"
-            />
-            <input
-              className="w-full mb-2 p-2 border rounded-md"
-              type="text"
-              placeholder="Enter customer address"
-            />
-            <input
-              className="w-full mb-2 p-2 border rounded-md"
-              type="text"
-              placeholder="Enter customer phone number"
-            />
-          </div>
-        </Card>
+          </motion.div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Dashboard;
+export default WhyUs;
