@@ -32,7 +32,7 @@ const WhyUs = () => {
       className="h-[80vh] flex flex-col items-center justify-center text-center mb-20 mt-20"
     >
       {/* Title */}
-      <h1 className="text-4xl font-bold text-purple-800 mb-10">Why Us?</h1>
+      <h1 className="text-4xl font-custom text-purple-800 mb-10">Why Us?</h1>
 
       {/* Cards Container */}
       <div className="flex flex-col md:flex-row justify-center items-center gap-10">
