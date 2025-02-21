@@ -4,9 +4,9 @@ import { motion, useInView } from "framer-motion";
 
 const faqs = [
   {
-    question: "What is FinSync?",
+    question: "What is storeEdge?",
     answer:
-      "FinSync is a modern app designed to make managing enterprises seamless.",
+      "storeEdge is a modern app designed to make managing enterprises seamless.",
   },
   {
     question: "How do I use the Scan & Pay feature to send money?",
