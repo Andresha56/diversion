@@ -3,14 +3,7 @@ import { BackButton } from "../components/User/BackButton";
 import { FormHeader } from "../components/User/FormHeader";
 import { SignatureUpload } from "../components/User/SignatureUpload";
 
-const FormInput = ({
-  label,
-  type,
-  placeholder,
-  icon,
-  value,
-  onChange,
-}) => {
+const FormInput = ({ label, type, placeholder, icon, value, onChange }) => {
   return (
     <div className="mb-7 max-sm:mb-5">
       <label className="mb-1.5 text-base font-black tracking-normal leading-6 text-black">
@@ -51,7 +44,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <main className="p-5 mx-auto my-0 min-h-screen bg-zinc-100 max-w-[412px] max-sm:p-4">
+    <main className="p-5 mx-auto my-0 min-h-screen  max-w-[412px] max-sm:p-4">
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
