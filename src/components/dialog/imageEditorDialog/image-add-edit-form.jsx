@@ -125,15 +125,16 @@ export const ImageEditor = ({
 
       <div className="action">
         <button
-          variant="primary"
           onClick={onSave}
           loading={isFileUploading}
           loaderHeight={24}
           disabled={!selectedImage}
+          className="bg-indigo-600 save"
         >
           Save
         </button>
         <button
+          className="cancel"
           onClick={onChangePicture}
           disabled={!selectedImage || isFileUploading}
         >

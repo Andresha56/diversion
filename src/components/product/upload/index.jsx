@@ -1,16 +1,33 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ImageUploaderDialog } from "../../dialog/imageEditorDialog";
 import { ImageIcon } from "../../../../icons";
+import queryString from "query-string";
 import axios from "axios";
-export const UploadProduct = () => {
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
+import "./product.css";
+export const CreateOrUpdateProduct = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const [formData, setFormData] = useState({
-    productName: "",
+    name: "",
     quantity: "",
     price: "",
     unit: "piece",
   });
+  const [amount, setAmount] = useState();
+  const [isisUpdateMode, setIsUpdateMode] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const queries = queryString.parse(window.location.search);
+    if (!queries) {
+      setIsUpdateMode(false);
+      return;
+    }
+    setFormData(queries);
+    setIsUpdateMode(true);
+  }, []);
   const onFileUploaded = useCallback((file) => {
     const imageUrl = URL.createObjectURL(file);
     setImageUrl(imageUrl);
@@ -22,28 +39,50 @@ export const UploadProduct = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const result = axios.post(
-      "https://diversionbackend.onrender.com/api/products/create",
-      {
-        ...formData,
+    if (!isisUpdateMode) {
+      const result = axios.post(
+        `${import.meta.VITE_BACKEND_BASE_URL}/api/products/create`,
+        {
+          ...formData,
+        }
+      );
+      if (result) {
+        toast.success("Product created successfully");
       }
-    );
+    } else {
+      const result = axios.post(
+        `${import.meta.VITE_BACKEND_BASE_URL}/api/products/update/quantity`,
+        {
+          productId: formData.productId,
+          quantity: form.quantity,
+        }
+      );
+      if (result) {
+        toast.success("Product updated successfully");
+        navigate("/dashboard");
+      }
+    }
   };
   return (
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center bg-gray-100 min-h-screen py-8"
+        className="flex flex-col items-center bg-gray-300 min-h-screen py-8"
       >
         <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
           <h1 className="text-xl font-bold text-indigo-600 mb-4">
-            Add Product
+            Add Payment Screenshort
           </h1>
 
           {/* Image Upload */}
           <div className="flex flex-col items-center mb-4">
-            <div
-              className="w-24 h-24 flex justify-center items-center bg-gray-200 rounded-full overflow-hidden cursor-pointer"
+            <Box
+              sx={{
+                width: "50%",
+                borderRadius: "5px",
+                minHeight: "200px",
+              }}
+              className="w-24 h-100 flex justify-center items-center bg-gray-200 overflow-hidden cursor-pointer image-container"
               onClick={() => setModalOpen(true)}
             >
               {imageUrl ? (
@@ -55,13 +94,13 @@ export const UploadProduct = () => {
               ) : (
                 <ImageIcon color={"black"} />
               )}
-            </div>
+            </Box>
             <button
               type="button"
               className="mt-2 text-indigo-600 text-sm font-semibold"
               onClick={() => setModalOpen(true)}
             >
-              Add Product Image
+              Add Payment Image
             </button>
           </div>
 
@@ -69,72 +108,24 @@ export const UploadProduct = () => {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Product Name
-              </label>
-              <input
-                type="text"
-                name="productName"
-                value={formData.productName}
-                onChange={handleChange}
-                placeholder="Enter product name"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Quantity
-              </label>
-              <input
-                type="text"
-                name="quantity"
-                value={formData.quantity}
-                onChange={handleChange}
-                placeholder="Enter quantity"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Price
+                Enter Amount
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
-                  $
-                </span>
                 <input
                   type="number"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleChange}
+                  name="amount"
+                  onChange={() => setAmount(e.target.value)}
                   placeholder="0.00"
                   className="pl-7 mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Unit Type
-              </label>
-              <select
-                name="unit"
-                value={formData.unit}
-                onChange={handleChange}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-              >
-                <option value="piece">per piece</option>
-                <option value="kgs">kgs</option>
-              </select>
-            </div>
-
             {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition"
             >
-              Add Product
+              Upload
             </button>
           </div>
         </div>
@@ -143,10 +134,10 @@ export const UploadProduct = () => {
       {/* Image Upload Modal */}
       <ImageUploaderDialog
         isOpen={isModalOpen}
-        title="Add Product Image"
+        title="Upload Image"
         fileName="product-image"
         onClose={() => setModalOpen(false)}
-        cropType="CIRCLE"
+        cropType="SQUARE"
         filePath="uploaded/product/"
         onFileUploaded={onFileUploaded}
       />

@@ -1,6 +1,7 @@
 import { Modal } from "../../modal";
 import { ImageEditor } from "./image-add-edit-form";
-
+import "./dialog.css";
+import { CloseIcon } from "../../../../icons";
 export const ImageUploaderDialog = ({
   isOpen,
   onClose,
@@ -10,12 +11,17 @@ export const ImageUploaderDialog = ({
   title,
   cropType,
 }) => {
-  console.log("calling");
   return (
     <div style={{ backgroundColor: "wheat" }}>
       <Modal isOpen={isOpen} placement={"center"}>
-        <div className="">
-          <p>{title}</p>
+        <div className="dialog-wrapper">
+          <div className="flex justify-between">
+            <p className="mb-2">{title}</p>
+            <button onClick={onClose} className="mb-2">
+              {" "}
+              X
+            </button>
+          </div>
           {
             <ImageEditor
               filePath={filePath}
