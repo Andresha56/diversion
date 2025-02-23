@@ -1,0 +1,69 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container .modal-wrapper {
+  position: relative;
+}
+
+.modal-container.center {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-container.center .modal-wrapper {
+  margin: 5% auto;
+}
+
+.modal-container.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-container.right .close {
+  left: 0;
+  right: inherit;
+}
+
+.modal-container.middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.13);
+  z-index: 99;
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  z-index: 1;
+  background: transparent !important;
+  padding: 5px 6px;
+  outline: none !important;
+}
+
+.close svg {
+  width: 14px;
+}
+
+.close.right {
+  right: 10px !important;
+  left: inherit !important;
+}

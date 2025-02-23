@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useCallback } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/dashboad/Dashboard.jsx";
 import { UserContextProvider } from "./context/UserContext.js";
-import { Navigation } from "./components/User/Navbar";
 import { Footer } from "./components/User/Footer";
 import Protected from "./components/Protected";
 import { ToastContainer } from "react-toastify";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
+import axios from "axios";
+import { UploadProduct } from "./components/product/upload/index.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -50,7 +52,6 @@ function App() {
   return (
     <div>
       <UserContextProvider value={{ user, authStatus, login, logout }}>
-        {authStatus && <Navigation />}
         <ToastContainer
           position="top-center"
           autoClose={8000}
@@ -68,14 +69,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <Protected>
-                <Dashboard />
-              </Protected>
-            }
-          />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/upload/products" element={<UploadProduct />} />
+
         </Routes>
         {authStatus && <Footer />}
       </UserContextProvider>

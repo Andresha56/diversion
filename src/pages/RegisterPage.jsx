@@ -44,7 +44,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <main className="p-6 mx-auto my-0 min-h-screen  max-w-2xl sm:p-8">
+    <main className="p-5 mx-auto my-0 min-h-screen  max-w-[412px] max-sm:p-4">
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
