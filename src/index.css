@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/fonts/ravenna-serial-extrabold-regular.ttf")
+    format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}

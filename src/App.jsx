@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
@@ -70,6 +71,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/upload/products" element={<UploadProduct />} />
+
         </Routes>
         {authStatus && <Footer />}
       </UserContextProvider>
